@@ -5,8 +5,10 @@ function init() {
   const message = document.querySelector('.message');
   const number = document.querySelector('.number');
   const score = document.querySelector('.score');
+  const highscore = document.querySelector('.highscore');
   const randomNumber = Math.trunc(Math.random() * 20 + 1);
   let counter = 20;
+  let bestScore = 0;
 
   button.addEventListener('click', checkNumber);
 
@@ -19,6 +21,10 @@ function init() {
             document.querySelector('body').style.backgroundColor = 'green';
             number.style.width = '30rem';
             message.textContent = '🎉 Congratulations';
+            //check heighScore
+            if (counter >= bestScore) {
+              highscore.textContent = counter;
+            }
             number.textContent = randomNumber;
           } else if (guessingNumber > randomNumber) {
             message.textContent = '📈 Too heigh';
@@ -42,9 +48,11 @@ function init() {
 
     score.textContent = counter;
   }
+
+  //refresh the page
+  document.querySelector('.again').addEventListener('click', function () {
+    location.reload();
+  });
 }
-//refresh the page
-document.querySelector('.again').addEventListener('click', function () {
-  location.reload();
-});
+
 init();
