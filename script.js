@@ -6,7 +6,7 @@ function init() {
   const number = document.querySelector('.number');
   const score = document.querySelector('.score');
   const highscore = document.querySelector('.highscore');
-  const randomNumber = Math.trunc(Math.random() * 20 + 1);
+  let randomNumber = Math.trunc(Math.random() * 20 + 1);
   let counter = 20;
   let bestScore = 0;
 
@@ -23,7 +23,8 @@ function init() {
             message.textContent = '🎉 Congratulations';
             //check heighScore
             if (counter >= bestScore) {
-              highscore.textContent = counter;
+              bestScore = counter;
+              highscore.textContent = bestScore;
             }
             number.textContent = randomNumber;
           } else if (guessingNumber > randomNumber) {
@@ -51,7 +52,13 @@ function init() {
 
   //refresh the page
   document.querySelector('.again').addEventListener('click', function () {
-    location.reload();
+    document.querySelector('body').style.backgroundColor = '#222';
+    counter = 20;
+    message.textContent = 'Start guessing...';
+    score.textContent = counter;
+    number.textContent = '?';
+    input.value = '';
+    randomNumber = Math.trunc(Math.random() * 20 + 1);
   });
 }
 
